@@ -1,0 +1,1 @@
+{"operation": "create", "target_addresses": ["aws_s3_bucket.bk5667899", "aws_s3_bucket_versioning.bk5667899_versioning", "aws_s3_bucket_server_side_encryption_configuration.bk5667899_encryption", "aws_s3_bucket_public_access_block.bk5667899_public_access_block"]}
