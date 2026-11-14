@@ -45,7 +45,7 @@ resource "aws_s3_bucket_versioning" "bk34467890876_versioning" {
   }
 }
 
-# ── New bucket: bk2534950 ─────────────────────────────────────────────────────
+# ── Existing bucket: bk2534950 ───────────────────────────────────────────────
 
 resource "aws_s3_bucket" "bk2534950" {
   bucket        = "bk2534950"
@@ -86,6 +86,53 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "bk2534950_encrypt
 
 resource "aws_s3_bucket_versioning" "bk2534950_versioning" {
   bucket = aws_s3_bucket.bk2534950.id
+
+  versioning_configuration {
+    status = "Disabled"
+  }
+}
+
+# ── New bucket: bk20993299 ────────────────────────────────────────────────────
+
+resource "aws_s3_bucket" "bk20993299" {
+  bucket        = "bk20993299"
+  force_destroy = true
+
+  tags = {
+    Name  = "bk20993299"
+    Stack = "s3-bucket"
+  }
+}
+
+resource "aws_s3_bucket_ownership_controls" "bk20993299_ownership" {
+  bucket = aws_s3_bucket.bk20993299.id
+
+  rule {
+    object_ownership = "BucketOwnerEnforced"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "bk20993299_public_access_block" {
+  bucket = aws_s3_bucket.bk20993299.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "bk20993299_encryption" {
+  bucket = aws_s3_bucket.bk20993299.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
+}
+
+resource "aws_s3_bucket_versioning" "bk20993299_versioning" {
+  bucket = aws_s3_bucket.bk20993299.id
 
   versioning_configuration {
     status = "Disabled"
